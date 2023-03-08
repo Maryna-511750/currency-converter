@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="static/css.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="static/js.js"></script>
+
+  <body ng-app="myApp" ng-controller="myCtrl">
+    <header>
+      <h1>Конвертер валют</h1>
+      <div id="currency">
+        <h4 ng-repeat="x in data | filter:'USD'">${{x.rate}} |</h4>
+        <h4 ng-repeat="x in data | filter:'EUR'">| €{{x.rate}}</h4>
+      </div>
+    </header>
+
+    <main>
+      <div id="cont">
+        <div id="part1">
+          <input type="text" ng-model="currency1" ng-blur="currency2 = (currency1 * selectedRate1)/selectedRate2">
+          <select ng-model="selectedRate1" ng-change="currency2 = (currency1 * selectedRate1)/selectedRate2">
+            <option value="1" selected>Українська гривня</option>
+            <option ng-repeat="x in data" value="{{x.rate}}">{{x.txt}}</option>
+          </select>
+        </div>
+        <div id="part2">
+          <input type="text" ng-model="currency2" ng-blur="currency1 =(currency2 * selectedRate2)/selectedRate1">
+          <select ng-model="selectedRate2" ng-change="currency2 = (currency1 * selectedRate1)/selectedRate2">
+            <option value="1">Українська гривня</option>
+            <option ng-repeat="x in data" value="{{x.rate}}">{{x.txt}}</option>
+          </select>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>Проект в повному обсязі створено Чеховською М. М.</p>
+      <p>тел. +38(097)7092350</p>
+      <p>e-mail:m51571750@gmail.com</p>
+    </footer>
+  </body>
+</html>
